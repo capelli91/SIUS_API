@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendJSON="http://www.talend.org/json" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.record="http:///orgomg/cwm/resource/record.ecore">
+  <TalendJSON:JSONFileConnection xmi:id="_NXcMYSvdEea2jIOvADZKaA" name="get_order" dataPackage="_NXcMaCvdEea2jIOvADZKaA" JSONFilePath="C:/Users/Daniel/Desktop/shop_export/order_57.json" Encoding="UTF-8" inputModel="false">
+    <root xmi:id="_NXcMYivdEea2jIOvADZKaA" JSONPath="/root" RelatedColumn="" Attribute="main" Order="1" Type="id_String"/>
+    <root xmi:id="_NXcMYyvdEea2jIOvADZKaA" JSONPath="/root/Name" RelatedColumn="Name" Attribute="branch" Order="2" Type="id_String"/>
+    <root xmi:id="_NXcMZCvdEea2jIOvADZKaA" JSONPath="/root/Customer_Nr" RelatedColumn="Customer_Nr" Attribute="branch" Order="3" Type="id_String"/>
+    <loop xmi:id="_NXcMZSvdEea2jIOvADZKaA" JSONPath="/root/Resources" RelatedColumn="" Attribute="main" Order="4" Type="id_String"/>
+    <loop xmi:id="_NXcMZivdEea2jIOvADZKaA" JSONPath="/root/Resources/Amount" RelatedColumn="Amount" Attribute="branch" Order="5" Type="id_Integer"/>
+    <loop xmi:id="_NXcMZyvdEea2jIOvADZKaA" JSONPath="/root/Resources/ArticleNr" RelatedColumn="ArticleNr" Attribute="branch" Order="6" Type="id_String"/>
+  </TalendJSON:JSONFileConnection>
+  <orgomg.cwm.resource.record:RecordFile xmi:id="_NXcMaCvdEea2jIOvADZKaA" name="default" dataManager="_NXcMYSvdEea2jIOvADZKaA">
+    <ownedElement xsi:type="TalendMetadata:MetadataTable" xmi:id="_NXcMaSvdEea2jIOvADZKaA" id="_HaGrQCvdEea2jIOvADZKaA" label="metadata">
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_NXcMaivdEea2jIOvADZKaA" name="Name" label="Name" talendType="id_String"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_NXcMayvdEea2jIOvADZKaA" name="Customer_Nr" label="Customer_Nr" talendType="id_String"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_NXcMbCvdEea2jIOvADZKaA" name="Amount" label="Amount" talendType="id_Integer"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_NXcMbSvdEea2jIOvADZKaA" name="ArticleNr" label="ArticleNr" talendType="id_String"/>
+    </ownedElement>
+  </orgomg.cwm.resource.record:RecordFile>
+</xmi:XMI>
