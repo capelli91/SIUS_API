@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendJSON="http://www.talend.org/json" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.record="http:///orgomg/cwm/resource/record.ecore">
+  <TalendJSON:JSONFileConnection xmi:id="_8YmrsCvnEea85-FpuCRtmA" name="input_order" dataPackage="_8YmrtivnEea85-FpuCRtmA" JSONFilePath="C:/Users/Daniel/Desktop/shop_export/order_57.json" Encoding="UTF-8" readbyMode="JSONPATH">
+    <schema xmi:id="_8YmrsSvnEea85-FpuCRtmA" LimitBoucle="50" AbsoluteXPathQuery="$.Resources[*]">
+      <schemaTargets xmi:id="_uf8LYCvqEea85-FpuCRtmA" RelativeXPathQuery="Amount" TagName="Amount"/>
+      <schemaTargets xmi:id="_utpQMCvqEea85-FpuCRtmA" RelativeXPathQuery="ArticleNr" TagName="ArticleNr"/>
+    </schema>
+  </TalendJSON:JSONFileConnection>
+  <orgomg.cwm.resource.record:RecordFile xmi:id="_8YmrtivnEea85-FpuCRtmA" name="default" dataManager="_8YmrsCvnEea85-FpuCRtmA">
+    <ownedElement xsi:type="TalendMetadata:MetadataTable" xmi:id="_8YmrtyvnEea85-FpuCRtmA" id="_gZ0soCvnEea85-FpuCRtmA" label="metadata"/>
+  </orgomg.cwm.resource.record:RecordFile>
+</xmi:XMI>
