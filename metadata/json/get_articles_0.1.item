@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendJSON="http://www.talend.org/json" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.record="http:///orgomg/cwm/resource/record.ecore">
+  <TalendJSON:JSONFileConnection xmi:id="__Ctr0CyHEeasetwOGHJTXA" name="get_articles" dataPackage="__CwIHCyHEeasetwOGHJTXA" JSONFilePath="C:/Users/Daniel/Desktop/articles.json" Encoding="UTF-8" readbyMode="JSONPATH">
+    <schema xmi:id="__CwIECyHEeasetwOGHJTXA" LimitBoucle="50" AbsoluteXPathQuery="$[*]">
+      <schemaTargets xmi:id="__CwIESyHEeasetwOGHJTXA" RelativeXPathQuery="ShortName" TagName="ShortName"/>
+      <schemaTargets xmi:id="__CwIEiyHEeasetwOGHJTXA" RelativeXPathQuery="NameDE_Webshop" TagName="NameDE_Webshop"/>
+      <schemaTargets xmi:id="__CwIEyyHEeasetwOGHJTXA" RelativeXPathQuery="BeschreibungDE_Webshop" TagName="BeschreibungDE_Webshop"/>
+      <schemaTargets xmi:id="__CwIFCyHEeasetwOGHJTXA" RelativeXPathQuery="AmountConfirmed" TagName="AmountConfirmed"/>
+      <schemaTargets xmi:id="__CwIFSyHEeasetwOGHJTXA" RelativeXPathQuery="HighendPreis" TagName="HighendPreis"/>
+      <schemaTargets xmi:id="__CwIFiyHEeasetwOGHJTXA" RelativeXPathQuery="Gewicht" TagName="Gewicht"/>
+      <schemaTargets xmi:id="__CwIFyyHEeasetwOGHJTXA" RelativeXPathQuery="Verpackungseinheit" TagName="Verpackungseinheit"/>
+      <schemaTargets xmi:id="__CwIGCyHEeasetwOGHJTXA" RelativeXPathQuery="Masse" TagName="Masse"/>
+      <schemaTargets xmi:id="__CwIGSyHEeasetwOGHJTXA" RelativeXPathQuery="Verwendung" TagName="Verwendung"/>
+      <schemaTargets xmi:id="__CwIGiyHEeasetwOGHJTXA" RelativeXPathQuery="Verkaufskategorie_Webshop" TagName="Verkaufskategorie_Webshop"/>
+      <schemaTargets xmi:id="__CwIGyyHEeasetwOGHJTXA" RelativeXPathQuery="Farbe" TagName="Farbe"/>
+    </schema>
+  </TalendJSON:JSONFileConnection>
+  <orgomg.cwm.resource.record:RecordFile xmi:id="__CwIHCyHEeasetwOGHJTXA" name="default" dataManager="__Ctr0CyHEeasetwOGHJTXA">
+    <ownedElement xsi:type="TalendMetadata:MetadataTable" xmi:id="__CwIHSyHEeasetwOGHJTXA" id="_uNEkYCyHEeasetwOGHJTXA" label="metadata">
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIHiyHEeasetwOGHJTXA" label="ShortName" length="17" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIHyyHEeasetwOGHJTXA" label="NameDE_Webshop" length="51" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIICyHEeasetwOGHJTXA" label="BeschreibungDE_Webshop" length="173" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIISyHEeasetwOGHJTXA" label="AmountConfirmed" length="18" precision="15" talendType="id_Float" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIIiyHEeasetwOGHJTXA" label="HighendPreis" length="5" precision="3" talendType="id_Float" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIIyyHEeasetwOGHJTXA" label="Gewicht" length="6" precision="5" talendType="id_Float" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIJCyHEeasetwOGHJTXA" label="Verpackungseinheit" length="31" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIJSyHEeasetwOGHJTXA" label="Masse" length="26" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIJiyHEeasetwOGHJTXA" label="Verwendung" length="29" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIJyyHEeasetwOGHJTXA" label="Verkaufskategorie_Webshop" length="22" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="__CwIKCyHEeasetwOGHJTXA" label="Farbe" length="23" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+    </ownedElement>
+  </orgomg.cwm.resource.record:RecordFile>
+</xmi:XMI>
