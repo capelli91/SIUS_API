@@ -2,7 +2,7 @@
 <talendfile:ProcessType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.talend.org/mapper" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" defaultContext="Default">
   <context confirmationNeeded="false" name="Default">
     <contextParameter comment="" name="User_ID" prompt="User_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="10"/>
-    <contextParameter comment="" name="Order_ID" prompt="Order_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="10"/>
+    <contextParameter comment="" name="Order_ID" prompt="Order_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="12"/>
     <contextParameter comment="" name="Value" prompt="Value?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_String" value=""/>
     <contextParameter comment="" name="Value2" prompt="Value2?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_String" value=""/>
   </context>
