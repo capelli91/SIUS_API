@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.relational="http:///orgomg/cwm/resource/relational.ecore">
-  <TalendMetadata:DatabaseConnection xmi:id="_Kp4NICyREea0F9cqQGZrVw" name="Sius_Metanet" id="_1YAK8CyQEea0F9cqQGZrVw" label="Sius_Metanet" dataPackage="_Krq84CyREea0F9cqQGZrVw" DatabaseType="MySQL" DriverClass="org.gjt.mm.mysql.Driver" URL="jdbc:mysql://80.74.142.70:3306/sius?noDatetimeStringSync=true" dbVersionString="MYSQL_5" Port="3306" Username="sius_extern" Password="h1apIWOXgTrar3LCf7064A==" ServerName="80.74.142.70" DatasourceName="" FileFieldName="" SID="sius" SqlSynthax="SQL Syntax" DbmsId="mysql_id" ProductId="MYSQL" AdditionalParams="noDatetimeStringSync=true" StandardSQL="true" SQLMode="false" UiSchema="">
-    <taggedValue xmi:id="_Kp4NISyREea0F9cqQGZrVw" tag="Is Conn Need Reload" value="false"/>
+  <TalendMetadata:DatabaseConnection xmi:id="_Kp4NICyREea0F9cqQGZrVw" name="Sius_Metanet" id="_1YAK8CyQEea0F9cqQGZrVw" label="Sius_Metanet" dataPackage="_HG7-0C4mEeaDxqrlofr8eA" DatabaseType="MySQL" DriverClass="org.gjt.mm.mysql.Driver" URL="jdbc:mysql://80.74.142.70:3306/sius_dev?noDatetimeStringSync=true" dbVersionString="MYSQL_5" Port="3306" Username="sius_dev" Password="I1vZ3jN3EkEiKgRHo4fgtw==" ServerName="80.74.142.70" DatasourceName="" FileFieldName="" SID="sius_dev" SqlSynthax="SQL Syntax" DbmsId="mysql_id" ProductId="MYSQL" AdditionalParams="noDatetimeStringSync=true" StandardSQL="true" SQLMode="false" UiSchema="">
+    <taggedValue xmi:id="_Kp4NISyREea0F9cqQGZrVw" tag="Is Conn Need Reload" value="true"/>
     <taggedValue xmi:id="_KqROsCyREea0F9cqQGZrVw" tag="package filter" value=""/>
     <taggedValue xmi:id="_KqaYoCyREea0F9cqQGZrVw" tag="Status" value=""/>
     <taggedValue xmi:id="_KqaYoSyREea0F9cqQGZrVw" tag="Version" value="0.1"/>
@@ -12,7 +12,7 @@
     <taggedValue xmi:id="_Kq3EkCyREea0F9cqQGZrVw" tag="DB ProductName" value="MySQL"/>
     <taggedValue xmi:id="_Kq3EkSyREea0F9cqQGZrVw" tag="DB ProductVersion" value="5.5.47-MariaDB"/>
     <taggedValue xmi:id="_Kq3EkiyREea0F9cqQGZrVw" tag="DB IdentifierQuoteString" value="`"/>
-    <parameters xmi:id="_Kp4NIiyREea0F9cqQGZrVw" key="CONN_PARA_KEY_USERNAME" value="sius_extern"/>
+    <parameters xmi:id="_Kp4NIiyREea0F9cqQGZrVw" key="CONN_PARA_KEY_USERNAME" value="sius_dev"/>
   </TalendMetadata:DatabaseConnection>
-  <orgomg.cwm.resource.relational:Catalog xmi:id="_Krq84CyREea0F9cqQGZrVw" name="sius" dataManager="_Kp4NICyREea0F9cqQGZrVw"/>
+  <orgomg.cwm.resource.relational:Catalog xmi:id="_HG7-0C4mEeaDxqrlofr8eA" name="sius_dev" dataManager="_Kp4NICyREea0F9cqQGZrVw"/>
 </xmi:XMI>
