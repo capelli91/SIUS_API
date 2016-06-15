@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <talendfile:ProcessType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.talend.org/mapper" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" defaultContext="Default">
   <context confirmationNeeded="false" name="Default">
-    <contextParameter comment="" name="User_ID" prompt="User_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="10"/>
-    <contextParameter comment="" name="Order_ID" prompt="Order_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="105"/>
+    <contextParameter comment="" name="User_ID" prompt="User_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="106"/>
+    <contextParameter comment="" name="Order_ID" prompt="Order_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="109"/>
     <contextParameter comment="" name="Value" prompt="Value?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_String" value=""/>
     <contextParameter comment="" name="Body" prompt="Body?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_String" value=""/>
     <contextParameter comment="" name="ERROR_CODE" prompt="ERROR_CODE?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value=""/>
@@ -112,7 +112,7 @@
   </parameters>
   <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tREST_1" show="false"/>
-    <elementParameter field="TEXT" name="URL" value="&quot;http://46.140.39.26:8080/api/projects/&quot;"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;http://192.168.1.8:8080/api/projects/&quot;"/>
     <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
     <elementParameter field="TABLE" name="HEADERS">
       <elementValue elementRef="NAME" value="&quot;Content-Type&quot;"/>
@@ -129,7 +129,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileOutputDelimited_1" show="false"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" value="outputStream" show="false"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;C:/talendouptut/orders/reponse_order_&quot;+context.Order_ID+&quot;.json&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;/var/log/SIUSAPI/orders/reponse_order_&quot;+context.Order_ID+&quot;.json&quot;"/>
     <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
     <elementParameter field="CHECK" name="OS_LINE_SEPARATOR_AS_ROW_SEPARATOR" value="true" show="false"/>
     <elementParameter field="OPENED_LIST" name="CSVROWSEPARATOR" value="&quot;\n&quot;" show="false"/>
@@ -394,6 +394,14 @@
       <elementValue elementRef="SEARCH_COLUMN" value="&quot;Amount\&quot;:\&quot;&quot;"/>
       <elementValue elementRef="REPLACE_COLUMN" value="&quot;Amount\&quot;:&quot;"/>
       <elementValue elementRef="COMMENT" value=""/>
+      <elementValue elementRef="INPUT_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="SEARCH_COLUMN" value="&quot;\&quot;}}&quot;"/>
+      <elementValue elementRef="REPLACE_COLUMN" value="&quot;\&quot;}]}&quot;"/>
+      <elementValue elementRef="COMMENT" value=""/>
+      <elementValue elementRef="INPUT_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="SEARCH_COLUMN" value="&quot;Resources\&quot;:\\{&quot;"/>
+      <elementValue elementRef="REPLACE_COLUMN" value="&quot;Resources\&quot;:[\\{&quot;"/>
+      <elementValue elementRef="COMMENT" value=""/>
     </elementParameter>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="json" name="tReplace_1">
@@ -409,7 +417,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileOutputDelimited_3" show="false"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" value="outputStream" show="false"/>
-    <elementParameter field="FILE" name="FILENAME" value="&quot;C:/talendouptut/orders/order_&quot;+context.Order_ID+&quot;.json&quot;"/>
+    <elementParameter field="FILE" name="FILENAME" value="&quot;/var/log/SIUSAPI/orders/order_&quot;+context.Order_ID+&quot;.json&quot;"/>
     <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;"/>
     <elementParameter field="CHECK" name="OS_LINE_SEPARATOR_AS_ROW_SEPARATOR" value="true" show="false"/>
     <elementParameter field="OPENED_LIST" name="CSVROWSEPARATOR" value="&quot;\n&quot;" show="false"/>
@@ -460,22 +468,22 @@
   </node>
   <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSendMail_1" show="false"/>
-    <elementParameter field="TEXT" name="TO" value="&quot;ckappler@sius.com&quot;"/>
+    <elementParameter field="TEXT" name="TO" value="&quot;christian@kappler.co&quot;"/>
     <elementParameter field="TEXT" name="FROM" value="&quot;christian.kappler@sius.com&quot;"/>
     <elementParameter field="CHECK" name="NEED_PERSONAL_NAME" value="false"/>
     <elementParameter field="TEXT" name="PERSONAL_NAME" value="&quot;sender&quot;" show="false"/>
     <elementParameter field="TEXT" name="CC" value=""/>
     <elementParameter field="TEXT" name="BCC" value=""/>
     <elementParameter field="TEXT" name="SUBJECT" value="&quot;SIUS API Problem&quot;"/>
-    <elementParameter field="MEMO_MESSAGE" name="MESSAGE" value="&quot;Hello, the job with the following ID wasn't successful:&quot; +context.Order_ID"/>
-    <elementParameter field="CHECK" name="CHECK_ATTACHMENT" value="true"/>
+    <elementParameter field="MEMO_MESSAGE" name="MESSAGE" value="&quot;Hello, the order with the following ID wasn't successful:&quot; +context.Order_ID"/>
+    <elementParameter field="CHECK" name="CHECK_ATTACHMENT" value="false"/>
     <elementParameter field="TABLE" name="ATTACHMENTS"/>
     <elementParameter field="TABLE" name="HEADERS"/>
     <elementParameter field="TEXT" name="SMTP_HOST" value="&quot;smtp.gmail.com&quot;"/>
-    <elementParameter field="TEXT" name="SMTP_PORT" value="587"/>
-    <elementParameter field="CHECK" name="SSL" value="true"/>
-    <elementParameter field="CHECK" name="STARTTLS" value="false"/>
-    <elementParameter field="CLOSED_LIST" name="IMPORTANCE" value="Normal"/>
+    <elementParameter field="TEXT" name="SMTP_PORT" value="25"/>
+    <elementParameter field="CHECK" name="SSL" value="false"/>
+    <elementParameter field="CHECK" name="STARTTLS" value="true"/>
+    <elementParameter field="CLOSED_LIST" name="IMPORTANCE" value="High"/>
     <elementParameter field="CHECK" name="NEED_AUTH" value="true"/>
     <elementParameter field="TEXT" name="AUTH_USERNAME" value="&quot;christian.kappler@sius.com&quot;"/>
     <elementParameter field="PASSWORD" name="AUTH_PASSWORD" value="LhEffd88U/B2xxylVH+xrg=="/>
