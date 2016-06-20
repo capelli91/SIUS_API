@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <talendfile:ProcessType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.talend.org/mapper" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd" defaultContext="Default">
   <context confirmationNeeded="false" name="Default">
-    <contextParameter comment="" name="User_ID" prompt="User_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="106"/>
-    <contextParameter comment="" name="Order_ID" prompt="Order_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="109"/>
-    <contextParameter comment="" name="Value" prompt="Value?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_String" value=""/>
     <contextParameter comment="" name="Body" prompt="Body?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_String" value=""/>
     <contextParameter comment="" name="ERROR_CODE" prompt="ERROR_CODE?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value=""/>
+    <contextParameter comment="" name="Order_ID" prompt="Order_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="111"/>
+    <contextParameter comment="" name="token" prompt="token?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_String" value=""/>
+    <contextParameter comment="" name="User_ID" prompt="User_ID?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_Integer" value="111"/>
+    <contextParameter comment="" name="Value" prompt="Value?" promptNeeded="false" repositoryContextId="_B8GkwClcEeaa9rPzZxCwOw" type="id_String" value=""/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" show="false"/>
@@ -110,13 +111,15 @@
     <routinesParameter id="_kJWqkCiTEea3NfsUnrs6Ww" name="TalendDate"/>
     <routinesParameter id="_kJbjECiTEea3NfsUnrs6Ww" name="TalendString"/>
   </parameters>
-  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="128">
+  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="960" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tREST_1" show="false"/>
-    <elementParameter field="TEXT" name="URL" value="&quot;http://192.168.1.8:8080/api/projects/&quot;"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;http://46.140.39.26:12719/api/projects/&quot;"/>
     <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
     <elementParameter field="TABLE" name="HEADERS">
       <elementValue elementRef="NAME" value="&quot;Content-Type&quot;"/>
       <elementValue elementRef="VALUE" value="&quot;application/json; charset=utf-8&quot;"/>
+      <elementValue elementRef="NAME" value="&quot;Authorization&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;Bearer &quot;+context.token"/>
     </elementParameter>
     <elementParameter field="MEMO" name="BODY" value="context.Value"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -125,7 +128,7 @@
       <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="896" posY="128">
+  <node componentName="tFileOutputDelimited" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1056" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileOutputDelimited_1" show="false"/>
     <elementParameter field="CHECK" name="USESTREAM" value="false"/>
     <elementParameter field="TEXT" name="STREAMNAME" value="outputStream" show="false"/>
@@ -160,7 +163,7 @@
       <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="896" posY="256">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1120" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_2" show="false"/>
     <elementParameter field="MEMO_JAVA" name="CODE" value="context.Body=row5.Body!=null?row5.Body:&quot;&quot;;&#xA;context.ERROR_CODE=row5.ERROR_CODE!=null?row5.ERROR_CODE:0;&#xA;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
@@ -185,7 +188,7 @@
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT ps_customer_custom_field_value.value AS CustomerNr, ps_orders.reference, ps_order_detail.product_quantity, ps_order_detail.product_reference, CONCAT(IF(ps_address.company IS NULL OR ps_address.company = '', CONCAT(ps_address.firstname, ' ',ps_address.lastname),ps_address.company),', ', ps_address.address1,ps_address.address2,', ',ps_address.postcode,' ', ps_address.city) As invoice, ps_orders.id_order FROM ps_orders LEFT OUTER join ps_order_detail ON ps_order_detail.id_order = ps_orders.id_order LEFT OUTER join ps_address ON ps_address.id_address = ps_orders.id_address_invoice LEFT OUTER join ps_customer_custom_field_value ON ps_customer_custom_field_value.id_customer = ps_orders.id_customer WHERE ps_customer_custom_field_value.id_custom_field = 2 AND ps_orders.id_order=&quot;+context.Order_ID"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT ps_customer_custom_field_value.value AS CustomerNr, ps_orders.reference, ps_order_detail.product_quantity, ps_order_detail.product_reference, ps_order_detail.product_price, CONCAT(IF(ps_address.company IS NULL OR ps_address.company = '', CONCAT(ps_address.firstname, ' ',ps_address.lastname),ps_address.company),', ', ps_address.address1,ps_address.address2,', ',ps_address.postcode,' ', ps_address.city) As invoice, ps_orders.id_order FROM ps_orders LEFT OUTER join ps_order_detail ON ps_order_detail.id_order = ps_orders.id_order LEFT OUTER join ps_address ON ps_address.id_address = ps_orders.id_address_invoice LEFT OUTER join ps_customer_custom_field_value ON ps_customer_custom_field_value.id_customer = ps_orders.id_customer WHERE ps_customer_custom_field_value.id_custom_field = 2 AND ps_orders.id_order=&quot;+context.Order_ID"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -196,13 +199,15 @@
     <elementParameter field="CHECK" name="ENABLE_STREAM" value="false"/>
     <elementParameter field="CHECK" name="TRIM_ALL_COLUMN" value="false"/>
     <elementParameter field="TABLE" name="TRIM_COLUMN">
-      <elementValue elementRef="SCHEMA_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="value"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="reference"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="product_quantity"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="product_reference"/>
+      <elementValue elementRef="TRIM" value="false"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="product_price"/>
       <elementValue elementRef="TRIM" value="false"/>
       <elementValue elementRef="SCHEMA_COLUMN" value="invoice"/>
       <elementValue elementRef="TRIM" value="false"/>
@@ -212,12 +217,13 @@
     <elementParameter field="TEXT" name="LABEL" value="get_new_order_invoice"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tMysqlInput_4">
-      <column comment="" key="false" length="-1" name="Customer_Nr" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
-      <column comment="" key="false" length="255" name="reference" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="product_quantity" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
-      <column comment="" key="false" length="255" name="product_reference" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="invoice" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="id_order" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="21845" name="value" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="9" name="reference" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="product_quantity" nullable="true" pattern="" precision="0" sourceType="BIGINT" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="32" name="product_reference" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="20" name="product_price" nullable="true" pattern="" precision="6" sourceType="FLOAT" type="id_Float" usefulColumn="true"/>
+      <column comment="" key="false" length="402" name="invoice" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="10" name="id_order" nullable="false" pattern="" precision="0" sourceType="INT" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="192" posY="160">
@@ -235,31 +241,34 @@
     <metadata connector="FLOW" label="json" name="output">
       <column comment="" key="false" length="255" name="Customer_Nr" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_String" originalLength="255" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="Name" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="Amount" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="Amount" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Long" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="ArticleNr" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="InvoiceAddress" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="ShippingAddress" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="PricePerUnit" nullable="true" pattern="" precision="-1" sourceType="" type="id_Float" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="MapperData">
       <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="output">
-        <mapperTableEntries name="Customer_Nr" expression="row3.Customer_Nr " type="id_String" nullable="true"/>
+        <mapperTableEntries name="Customer_Nr" expression="row3.value " type="id_String" nullable="true"/>
         <mapperTableEntries name="Name" expression="row3.reference " type="id_String" nullable="true"/>
-        <mapperTableEntries name="Amount" expression="row3.product_quantity " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="Amount" expression="row3.product_quantity " type="id_Long" nullable="true"/>
         <mapperTableEntries name="ArticleNr" expression="row3.product_reference " type="id_String" nullable="true"/>
         <mapperTableEntries name="InvoiceAddress" expression="row3.invoice " type="id_String" nullable="true"/>
         <mapperTableEntries name="ShippingAddress" expression="row6.delivery " type="id_String" nullable="true"/>
+        <mapperTableEntries name="PricePerUnit" expression="row3.product_price " type="id_Float" nullable="true"/>
       </outputTables>
       <inputTables sizeState="INTERMEDIATE" name="row3" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
-        <mapperTableEntries name="Customer_Nr" type="id_String" nullable="true"/>
+        <mapperTableEntries name="value" type="id_String" nullable="true"/>
         <mapperTableEntries name="reference" type="id_String" nullable="true"/>
-        <mapperTableEntries name="product_quantity" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="product_quantity" type="id_Long" nullable="true"/>
         <mapperTableEntries name="product_reference" type="id_String" nullable="true"/>
+        <mapperTableEntries name="product_price" type="id_Float" nullable="true"/>
         <mapperTableEntries name="invoice" type="id_String" nullable="true"/>
-        <mapperTableEntries name="id_order" type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="id_order" type="id_Integer"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row6" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row6" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="delivery" type="id_String" nullable="true"/>
         <mapperTableEntries name="id_order" expression="row3.id_order " type="id_Integer" nullable="true" operator="="/>
       </inputTables>
@@ -308,7 +317,7 @@
   </node>
   <node componentName="tWriteJSONField" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tWriteJSONField_4" show="false"/>
-    <elementParameter field="COLUMN_LIST" name="JSONFIELD" value="Customer_Nr"/>
+    <elementParameter field="COLUMN_LIST" name="JSONFIELD" value="JSON"/>
     <elementParameter field="TABLE" name="ROOT" show="false">
       <elementValue elementRef="PATH" value="/export"/>
       <elementValue elementRef="COLUMN" value=""/>
@@ -353,16 +362,21 @@
       <elementValue elementRef="VALUE" value=""/>
       <elementValue elementRef="ATTRIBUTE" value="branch"/>
       <elementValue elementRef="ORDER" value="8"/>
+      <elementValue elementRef="PATH" value="/export/Resources/PricePerUnit"/>
+      <elementValue elementRef="COLUMN" value="PricePerUnit"/>
+      <elementValue elementRef="VALUE" value=""/>
+      <elementValue elementRef="ATTRIBUTE" value="branch"/>
+      <elementValue elementRef="ORDER" value="9"/>
     </elementParameter>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="TABLE" name="GROUPBYS">
-      <elementValue elementRef="OUTPUT_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="OUTPUT_COLUMN" value="JSON"/>
       <elementValue elementRef="INPUT_COLUMN" value="Customer_Nr"/>
-      <elementValue elementRef="OUTPUT_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="OUTPUT_COLUMN" value="JSON"/>
       <elementValue elementRef="INPUT_COLUMN" value="Name"/>
-      <elementValue elementRef="OUTPUT_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="OUTPUT_COLUMN" value="JSON"/>
       <elementValue elementRef="INPUT_COLUMN" value="InvoiceAddress"/>
-      <elementValue elementRef="OUTPUT_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="OUTPUT_COLUMN" value="JSON"/>
       <elementValue elementRef="INPUT_COLUMN" value="ShippingAddress"/>
     </elementParameter>
     <elementParameter field="CHECK" name="REMOVE_ROOT" value="true"/>
@@ -370,7 +384,7 @@
     <elementParameter field="TEXT" name="LABEL" value="generate_json_structure"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="json" name="tWriteJSONField_4">
-      <column comment="" key="false" length="255" name="Customer_Nr" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_String" originalLength="255" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="JSON" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_String" originalLength="255" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="Name" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Amount" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="ArticleNr" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
@@ -386,26 +400,34 @@
     <elementParameter field="CHECK" name="STRICT_MATCH" value="true" show="false"/>
     <elementParameter field="CHECK" name="ADVANCED_MODE" value="true"/>
     <elementParameter field="TABLE" name="ADVANCED_SUBST">
-      <elementValue elementRef="INPUT_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="INPUT_COLUMN" value="JSON"/>
       <elementValue elementRef="SEARCH_COLUMN" value="&quot;\&quot;,\&quot;ArticleNr&quot;"/>
       <elementValue elementRef="REPLACE_COLUMN" value="&quot;.0,\&quot;ArticleNr&quot;"/>
       <elementValue elementRef="COMMENT" value=""/>
-      <elementValue elementRef="INPUT_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="INPUT_COLUMN" value="JSON"/>
       <elementValue elementRef="SEARCH_COLUMN" value="&quot;Amount\&quot;:\&quot;&quot;"/>
       <elementValue elementRef="REPLACE_COLUMN" value="&quot;Amount\&quot;:&quot;"/>
       <elementValue elementRef="COMMENT" value=""/>
-      <elementValue elementRef="INPUT_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="INPUT_COLUMN" value="JSON"/>
       <elementValue elementRef="SEARCH_COLUMN" value="&quot;\&quot;}}&quot;"/>
       <elementValue elementRef="REPLACE_COLUMN" value="&quot;\&quot;}]}&quot;"/>
       <elementValue elementRef="COMMENT" value=""/>
-      <elementValue elementRef="INPUT_COLUMN" value="Customer_Nr"/>
+      <elementValue elementRef="INPUT_COLUMN" value="JSON"/>
       <elementValue elementRef="SEARCH_COLUMN" value="&quot;Resources\&quot;:\\{&quot;"/>
       <elementValue elementRef="REPLACE_COLUMN" value="&quot;Resources\&quot;:[\\{&quot;"/>
+      <elementValue elementRef="COMMENT" value=""/>
+      <elementValue elementRef="INPUT_COLUMN" value="JSON"/>
+      <elementValue elementRef="SEARCH_COLUMN" value="&quot;PricePerUnit\&quot;:\&quot;&quot;"/>
+      <elementValue elementRef="REPLACE_COLUMN" value="&quot;PricePerUnit\&quot;:&quot;"/>
+      <elementValue elementRef="COMMENT" value=""/>
+      <elementValue elementRef="INPUT_COLUMN" value="JSON"/>
+      <elementValue elementRef="SEARCH_COLUMN" value="&quot;\&quot;\\}&quot;"/>
+      <elementValue elementRef="REPLACE_COLUMN" value="&quot;\\}&quot;"/>
       <elementValue elementRef="COMMENT" value=""/>
     </elementParameter>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="json" name="tReplace_1">
-      <column comment="" key="false" length="255" name="Customer_Nr" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_String" originalLength="255" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="JSON" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_String" originalLength="255" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="Name" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Amount" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="ArticleNr" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
@@ -444,7 +466,7 @@
     <elementParameter field="TEXT" name="LABEL" value="create_json"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="json" name="tFileOutputDelimited_3">
-      <column comment="" key="false" length="255" name="Customer_Nr" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_String" originalLength="255" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="JSON" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_String" originalLength="255" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="Name" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Amount" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="ArticleNr" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
@@ -454,11 +476,11 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_1" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="context.Value=row9.Customer_Nr;&#xA;System.out.println(context.Value);"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.Value=row9.JSON;&#xA;System.out.println(context.Value);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" label="json" name="tJavaRow_1">
-      <column comment="" key="false" length="255" name="Customer_Nr" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_String" originalLength="255" usefulColumn="true"/>
+      <column comment="" key="false" length="255" name="JSON" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_String" originalLength="255" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="Name" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="Amount" nullable="true" pattern="" precision="-1" sourceType="INT" type="id_Integer" usefulColumn="true"/>
       <column comment="" key="false" length="255" name="ArticleNr" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="255" usefulColumn="true"/>
@@ -466,7 +488,7 @@
       <column comment="" key="false" length="-1" name="ShippingAddress" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="800" posY="416">
+  <node componentName="tSendMail" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="1024" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSendMail_1" show="false"/>
     <elementParameter field="TEXT" name="TO" value="&quot;christian@kappler.co&quot;"/>
     <elementParameter field="TEXT" name="FROM" value="&quot;christian.kappler@sius.com&quot;"/>
@@ -499,7 +521,7 @@
       <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMysqlRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="960" posY="416">
+  <node componentName="tMysqlRow" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="1120" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMysqlRow_1" show="false"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:PROPERTY_TYPE" value="REPOSITORY"/>
     <elementParameter field="TECHNICAL" name="PROPERTY:REPOSITORY_PROPERTY_TYPE" value="_1YAK8CyQEea0F9cqQGZrVw" show="false"/>
@@ -536,7 +558,65 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tREST_1" offsetLabelX="0" offsetLabelY="0" source="tREST_1" target="tFileOutputDelimited_1">
+  <node componentName="tREST" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tREST_2" show="false"/>
+    <elementParameter field="TEXT" name="URL" value="&quot;http://46.140.39.26:12719/api/token&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="METHOD" value="POST"/>
+    <elementParameter field="TABLE" name="HEADERS">
+      <elementValue elementRef="NAME" value="&quot;Content-Type&quot;"/>
+      <elementValue elementRef="VALUE" value="&quot;application/json;&quot;"/>
+    </elementParameter>
+    <elementParameter field="MEMO" name="BODY" value="&quot;{\&quot;username\&quot;:\&quot;WebShopUser\&quot;,\&quot;password\&quot;:\&quot;TzdpvvT\&quot;}&quot;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <elementParameter field="CHECK" name="INFORMATION" value="true"/>
+    <elementParameter field="MEMO" name="COMMENT" value="get token"/>
+    <metadata connector="FLOW" name="tREST_2">
+      <column key="false" length="0" name="Body" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="0" name="ERROR_CODE" nullable="true" precision="0" sourceType="" type="id_Integer" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tExtractJSONFields" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="832" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tExtractJSONFields_1" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="READ_BY" value="JSONPATH"/>
+    <elementParameter field="PREV_COLUMN_LIST" name="JSONFIELD" value="Body"/>
+    <elementParameter field="TEXT" name="LOOP_QUERY" value="&quot;/bills/bill/line&quot;" show="false"/>
+    <elementParameter field="TEXT" name="JSON_LOOP_QUERY" value="&quot;$&quot;"/>
+    <elementParameter field="TABLE" name="MAPPING" show="false">
+      <elementValue elementRef="SCHEMA_COLUMN" value="Token"/>
+      <elementValue elementRef="QUERY" value=""/>
+      <elementValue elementRef="NODECHECK" value="false"/>
+      <elementValue elementRef="ISARRAY" value="false"/>
+    </elementParameter>
+    <elementParameter field="TABLE" name="MAPPING_4_JSONPATH">
+      <elementValue elementRef="SCHEMA_COLUMN" value="Token"/>
+      <elementValue elementRef="QUERY" value="&quot;token&quot;"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="TEXT" name="SCHEMA_OPT_NUM" value="100" show="false"/>
+    <elementParameter field="TEXT" name="DESTINATION" value="tExtractJSONFields_1" show="false"/>
+    <elementParameter field="ENCODING_TYPE" name="ENCODING" value="&quot;UTF-8&quot;" show="false"/>
+    <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="UTF-8" show="false"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tExtractJSONFields_1">
+      <column comment="" key="false" length="-1" name="Token" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+    <metadata connector="REJECT" name="REJECT">
+      <column comment="" key="false" length="-1" name="Token" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorJSONField" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+      <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="960" posY="128">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_3" show="false"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="context.token=row8.getToken();&#xA;"/>
+    <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tJavaRow_3">
+      <column comment="" key="false" length="-1" name="Token" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <connection connectorName="FLOW" label="row4" lineStyle="0" metaname="tREST_1" offsetLabelX="-13" offsetLabelY="12" source="tREST_1" target="tFileOutputDelimited_1">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row4" show="false"/>
   </connection>
@@ -557,11 +637,19 @@
       <elementValue elementRef="TRACE_COLUMN" value="id_order"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="product_price"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row3" show="false"/>
   </connection>
   <connection connectorName="FLOW" label="output" lineStyle="0" metaname="output" offsetLabelX="0" offsetLabelY="0" source="tMap_4" target="tWriteJSONField_4">
+    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
+      <elementValue elementRef="TRACE_COLUMN" value="PricePerUnit"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="output" show="false"/>
   </connection>
@@ -602,7 +690,18 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row9" show="false"/>
   </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tREST_1">
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJavaRow_1" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_1" target="tREST_2">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk2" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row7" lineStyle="0" metaname="tREST_2" offsetLabelX="0" offsetLabelY="0" source="tREST_2" target="tExtractJSONFields_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row7" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row8" lineStyle="0" metaname="tExtractJSONFields_1" offsetLabelX="0" offsetLabelY="0" source="tExtractJSONFields_1" target="tJavaRow_3">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row8" show="false"/>
+  </connection>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tJavaRow_3" offsetLabelX="0" offsetLabelY="0" source="tJavaRow_3" target="tREST_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk1" show="false"/>
   </connection>
   <subjob>
@@ -622,6 +721,11 @@
   </subjob>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMysqlRow_1" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
+    <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
+  </subjob>
+  <subjob>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tREST_2" show="false"/>
     <elementParameter field="COLOR" name="SUBJOB_TITLE_COLOR" value="92;131;150" show="false"/>
     <elementParameter field="COLOR" name="SUBJOB_COLOR" value="207;226;236"/>
   </subjob>
